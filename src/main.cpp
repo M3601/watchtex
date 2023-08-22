@@ -39,8 +39,9 @@ int main(int argc, char *argv[]) {
   jot::info("watching `{}`", path.string());
   watcher.add(path);
   watcher.start();
+  graph_t deps, roots;
+  tex::analyze(path, deps, roots);
   while (true) {
-    static graph_t deps, roots;
     auto event = watcher.poll();
     jot::debug("{} {}", event.path.string(), maskstr(event.mask));
     if (MATCH(event.mask, IN_CREATE | IN_ISDIR)) {

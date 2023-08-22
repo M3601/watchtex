@@ -127,7 +127,6 @@ void analyze(path_t path, graph_t &deps, graph_t &roots) {
     while ((ptr = next_include(ptr))) {
       auto token = next_token(ptr);
       if (!token.has_value()) continue;
-      jot::info("{}", token.value());
       path_t dep = directory / token.value();
       if (!std::filesystem::exists(dep)) {
         jot::warn("analyze: path `{}` does not exist", dep.string());
