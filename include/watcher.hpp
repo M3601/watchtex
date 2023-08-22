@@ -3,6 +3,10 @@
 
 #pragma once
 
+#ifndef __linux__
+#error "watcher.hpp is only available on Linux"
+#endif
+
 #include <atomic>
 #include <filesystem>
 #include <map>
